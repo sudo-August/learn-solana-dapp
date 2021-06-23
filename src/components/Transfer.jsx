@@ -57,8 +57,19 @@ const Transfer = ({ keypair }) => {
     setFetching(true);
 
     // Create a transaction
+    const transaction = new Transaction()
     // Add instructions
+    transaction.add(instructions)
     // Call sendAndConfirmTransaction
+    sendAndConfirmTransaction(connection, transaction, signers)
+    .then(sig => {
+      setTxSignature(sig)
+      setFetching(false)
+    })
+    .catch(err => {
+      console.log(err)
+      setFetching(false)
+    })
     // On success, call setTxSignature and setFetching
   };
 

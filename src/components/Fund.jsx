@@ -13,7 +13,11 @@ const Fund = () => {
     const connection = new Connection(url);
     
     // Create a PublicKey address from the input value
+    const pubkey = new PublicKey(value)
     // Call requestAirdrop
+    connection.requestAirdrop(pubkey, 1000000000)
+    .then(res => setIsFunded(true))
+    .catch(err => console.log(err))
     // On success, set isFunded to true
 
   }
